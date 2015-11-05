@@ -1,4 +1,5 @@
 import com.rawmobility.blender.demo.BulkXmlApi;
+import com.rawmobility.blender.demo.GenericXMLMarshaller;
 import com.rawmobility.blender.demo.dto.*;
 
 import javax.xml.bind.JAXBException;
@@ -20,6 +21,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Main a = new Main("USERNAME", "PASSWORD");
+        /*
         String routeId = "ROUTEID?";
 
         // Send a message to single recipient
@@ -28,12 +30,20 @@ public class Main {
         // Send the SAME message to a batch
         List<String> recipients = new ArrayList<String>();
         recipients.add("61417188345");
-//        recipients.add("61400000000");
+        recipients.add("61400000000");
         //a.sendBatchMessage("test", recipients, "Test MT # $", routeId);
 
         a.sendBatchToMulti("origin", routeId);
+        */
+        
+        String xml = "<deliverymessage><created>2011-07-11T11:30:36+0000</created><id>0ed7b241-096e-4ca4-abc3-a365f11fae8f</id><body>Test 11:33</body><inReplyTo>cad1bf26-1294-4076-8b44-1197f2568104</inReplyTo><logicalMessageId>c8aca89b-84e1-42fe-a32c-5050cd6a0590</logicalMessageId><originator>44000009999</originator><recipient>44000000001</recipient></deliverymessage>";
+        DeliveryMessage deliveryMessage = a.receiveMessage(xml);
+        System.out.println("Received message " + deliveryMessage);
 
 
+        xml = "<deliveryreceipt><created>2000-12-19T06:29:56+0000</created><deliveryMessageId>2ae13f9d-f5dc-4478-ab17-ba13ddeffad2</deliveryMessageId><status>ACCEPTED</status><clientReference>myref</clientReference><part>1</part><parts>1</parts></deliveryreceipt>";
+        DeliveryReceipt deliveryReceipt = a.receiveReceipt(xml);
+        System.out.println("Received receipt " + deliveryReceipt);
     }
 
     public BulkXmlApi getApi() {
@@ -117,5 +127,15 @@ public class Main {
         for (BatchRecipientMultiBody rcpt : response.getRecipients()) {
             System.out.println(rcpt.getRecipient() + " remote id: " + rcpt.getId() + " my id: " + rcpt.getReference());
         }
+    }
+
+    public DeliveryReceipt receiveReceipt(String xml) throws JAXBException {
+        GenericXMLMarshaller<DeliveryReceipt> marshaller = new GenericXMLMarshaller<DeliveryReceipt>(DeliveryReceipt.class);
+        return marshaller.unmarshal(xml);
+    }
+
+    public DeliveryMessage receiveMessage(String xml) throws JAXBException {
+        GenericXMLMarshaller<DeliveryMessage> marshaller = new GenericXMLMarshaller<DeliveryMessage>(DeliveryMessage.class);
+        return marshaller.unmarshal(xml);
     }
 }
