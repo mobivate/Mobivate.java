@@ -145,9 +145,6 @@ public class Main {
             batch.addMSISDN(recipient);
         }
 
-        String xml = MarshallerFactory.marshal(batch);
-        System.out.println(xml);
-
         XMLResponseWrapper xmlResponseWrapper = getApi().sendBatch(batch);
         BatchMessageSingleBody response = (BatchMessageSingleBody) xmlResponseWrapper.getBody();
         System.out.println("Submitted, remote batch id: " + response.getId());
