@@ -1,4 +1,4 @@
-# blender-api-php
+# blender-java-php
 Blender Bulk SMS Platform - Send SMS via Java
 
 
@@ -80,7 +80,27 @@ for (BatchRecipientMultiBody rcpt : response.getRecipients()) {
 }
 ```
 
+### Schedule message
+```java
+// Get date/time for send (one hour from now)
+Date scheduleTime = new Date();
+Calendar cal = Calendar.getInstance();
+cal.setTime(scheduleTime);
+cal.add(Calendar.MINUTE, 60);
+scheduleTime = cal.getTime();
 
+// Initialize message
+BatchMessageSingleBody batch = new BatchMessageSingleBody();
+batch.setOriginator(originator);
+batch.setRouteId(routeId);
+batch.setBody(body);
+
+// Schedule time & timezone
+batch.setDeliverySchedule(schedule);
+batch.setDeliveryTimeZone(TimeZone.getDefault().getID());
+
+// Add recipients, Submit message...
+```
 
 ### Receive SMS
 
