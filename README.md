@@ -1,4 +1,4 @@
-# blender-java-php
+# blender-api-java
 Blender Bulk SMS Platform - Send SMS via Java
 
 
