@@ -105,15 +105,15 @@ batch.setDeliveryTimeZone(TimeZone.getDefault().getID());
 ### Receive SMS
 
 ```java
-String xml = request.getParam("xml");
+String xml = request.getParameter("xml");
 GenericXMLMarshaller<DeliveryMessage> marshaller = new GenericXMLMarshaller<DeliveryMessage>(DeliveryMessage.class);
 DeliveryMessage message = marshaller.unmarshal(xml);
 ```
 
 ### Receive Receipt
 
-```php
-String xml = request.getParam("xml");
+```java
+String xml = request.getParameter("xml");
 GenericXMLMarshaller<DeliveryReceipt> marshaller = new GenericXMLMarshaller<DeliveryReceipt>(DeliveryReceipt.class);
 DeliveryReceipt receipt = marshaller.unmarshal(xml);
 
