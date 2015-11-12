@@ -1,10 +1,13 @@
 package com.rawmobility.blender.demo.dto;
 
+import com.rawmobility.blender.demo.DateAdapter;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 public class BatchMessage {
 	
@@ -44,6 +47,7 @@ public class BatchMessage {
 		this.routeId = routeId;
 	}
 
+	@XmlJavaTypeAdapter(DateAdapter.class)
 	public Date getDeliverySchedule() {
 		return deliverySchedule;
 	}
