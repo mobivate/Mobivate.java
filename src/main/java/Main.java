@@ -10,7 +10,6 @@ import java.util.*;
 public class Main {
     private final String username;
     private final String password;
-    private final String url = "http://apps.rawmobility.com/bulksms/xmlapi";
     BulkXmlApi api;
 
     public Main(String username, String password) {
@@ -47,6 +46,7 @@ public class Main {
         */
 
 
+
         // Schedule a message to 20 minutes from now
         Date scheduleTime = new Date();
         Calendar cal = Calendar.getInstance();
@@ -65,7 +65,7 @@ public class Main {
             return api;
 
         // Initialize the API
-        api = new BulkXmlApi(url, username, password);
+        api = new BulkXmlApi(username, password);
 
         // Login
         if (!api.login()) {

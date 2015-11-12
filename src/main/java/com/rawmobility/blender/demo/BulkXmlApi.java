@@ -11,8 +11,10 @@ import com.rawmobility.blender.demo.dto.XMLResponseWrapper;
 
 public class BulkXmlApi extends BaseXmlApi {
 
-	public BulkXmlApi(String apiUrl, String username, String password) {
-		super(apiUrl, username, password);
+	public static final String XMLAPI_URL = "http://apps.rawmobility.com/bulksms/xmlapi";
+
+	public BulkXmlApi(String username, String password) {
+		super(XMLAPI_URL, username, password);
 	}
 
 	public XMLResponseWrapper sendBatch(BatchMessageSingleBody batch) throws JAXBException, IOException {
