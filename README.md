@@ -1,5 +1,5 @@
 # blender-api-java
-Blender Bulk SMS Platform - Send SMS via Java
+Java interface for sending sms via Mobivate BulkSMS
 
 
 ### Initialize the SDK
