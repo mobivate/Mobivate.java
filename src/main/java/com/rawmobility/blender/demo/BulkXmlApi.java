@@ -11,7 +11,7 @@ import com.rawmobility.blender.demo.dto.XMLResponseWrapper;
 
 public class BulkXmlApi extends BaseXmlApi {
 
-	public static final String XMLAPI_URL = "http://apps.rawmobility.com/bulksms/xmlapi";
+	public static final String XMLAPI_URL = "https://app.mobivatebulksms.com/bulksms/xmlapi";
 
 	public BulkXmlApi(String username, String password) {
 		super(XMLAPI_URL, username, password);
