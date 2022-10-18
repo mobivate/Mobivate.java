@@ -66,16 +66,19 @@ public class BaseXmlApi {
 		String loginUrl = this.url + "login/" + username + "/" + password;
 
 		HttpMethod method = new GetMethod(loginUrl);
-
+		method.setRequestHeader("User-Agent", "BlenderJava");
+		System.out.println("login request url " + loginUrl);
 		XMLResponseWrapper response;
 		try {
 			int statusCode = httpClient.executeMethod(method);
 			if (statusCode != HttpStatus.SC_OK) {
 				System.err.println("Method failed: " + method.getStatusLine());
+				System.out.println("Body: " + method.getResponseBodyAsString());
 				return false;
 			}
 
 			String xml = method.getResponseBodyAsString();
+			System.out.println("login response " + method);
 
 			response = getResponseMarshaller().unmarshal(xml);
 		} catch (Exception e) {
@@ -100,6 +103,7 @@ public class BaseXmlApi {
 		String url = getUrl(urlPart);		
 		PostMethod method = new PostMethod(url);
 		method.setParameter("xml", xml);
+		method.setRequestHeader("User-Agent", "BlenderJava");
 
 //		System.out.println("POST request: " + url + "\n" + xml);
 
